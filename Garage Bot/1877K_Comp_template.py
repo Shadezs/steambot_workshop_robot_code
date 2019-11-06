@@ -2,6 +2,18 @@
 import sys
 import vex
 from vex import *
+def forward(x,y,z):
+    if z==1:
+        lback.rotate_to(x,vex.RotationUnits.REV,y,vex.VelocityUnits.PCT,True)
+        lfront.rotate_to(x, vex.RotationUnits.REV,y,vex.VelocityUnits.PCT,True)
+        rfront.rotate_to(x,vex.RotationUnits.REV,y, vex.VelocityUnits.PCT,True)
+        rback.rotate_to(x,vex.RotationUnits.REV,y, vex.VelocityUnits.PCT,True)
+    else:
+        lback.rotate_to(x,vex.RotationUnits.REV,y,vex.VelocityUnits.PCT,False)
+        lfront.rotate_to(x, vex.RotationUnits.REV,y,vex.VelocityUnits.PCT,False)
+        rfront.rotate_to(x,vex.RotationUnits.REV,y, vex.VelocityUnits.PCT,False)
+        rback.rotate_to(x,vex.RotationUnits.REV,y, vex.VelocityUnits.PCT,False)
+    
 
 #region config
 brain      = vex.Brain()
