@@ -38,30 +38,37 @@ def pre_auton():
     pass
 
 def autonomous():
-   #Blue
-   Forward
-   Right
-   Back
-   Forward
-   Intake and forward
-   Back
-   Left
-   Forward
-   Score
-  #Red
-   Forward
-   Left
-   Back
-   Forward
-   Intake and forward
-   Back
-   Right
-   Forward
-   Score
-   
-   
+    #Blue   
+    move(3,100,100,0)
+    #Forward (# 1) Not waiting for completion to deploy
+    mag.rotate_to(360, vex.RotationUnits.DEG, 75, vex.VelocityUnits.PCT, True)
+    rollerlift.rotate_to(150, vex.RotationUnits.DEG, 50, vex.VelocityUnits.PCT,True)
+    rollerlift.stop(vex.BrakeType.HOLD)
+    #deploy waiting for completion after each step
+    if lfront.is_spinning()!= True:
+        #checking for completion of forward command to continue moving
+        move(5,100,-100,1)
+        #Right
+        move(.5,-100,-100)
+        #Back
+        #Forward
+        #Intake and forward
+        #Back
+        #Left
+        #Forward
+        #Score
+        #Red
+        #Forward
+        #Left
+        #Back
+        #Forward
+        #Intake and forward
+        #Back
+        #Right
+        #Forward
+        #Score
  # Place autonomous code here
-    pass
+
 
 def drivercontrol():
     # Place drive control code here, inside the loop
@@ -87,14 +94,13 @@ def drivercontrol():
         else:
             rollerlift.stop(vex.BrakeType.HOLD)
         if con.buttonX.pressing():
-            mag.spin(vex.DirectionType.FWD, 100, vex.VelocityUnits.PCT)
+            mag.spin(vex.DirectionType.FWD, 70, vex.VelocityUnits.PCT)
         elif con.buttonB.pressing():
-            mag.spin(vex.DirectionType.FWD, -100, vex.VelocityUnits.PCT)
+            mag.spin(vex.DirectionType.FWD, -70, vex.VelocityUnits.PCT)
         else:
             mag.stop(vex.BrakeType.BRAKE)
 
         pass
-
 # Do not adjust the lines below
 
 # Set up (but don't start) callbacks for autonomous and driver control periods.
