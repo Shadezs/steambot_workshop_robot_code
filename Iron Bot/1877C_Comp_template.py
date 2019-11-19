@@ -30,12 +30,107 @@ def pre_auton():
 
 def autonomous():
     # Place autonomous code here
-    tray.rotate_for(vex.DirectionType.REV,5,vex.RotationUnits.REV,50,vex.VelocityUnits.PCT)
-    tray.rotate_for(vex.DirectionType.FWD,5,vex.RotationUnits.REV,50,vex.VelocityUnits.PCT,False)
-    dt.drive_for(vex.DirectionType.FWD,6,vex.DistanceUnits.IN)
-    dt.turn_for(vex.TurnType.LEFT,90,vex.RotationUnits.DEG)
-    dt.drive_for(vex.DirectionType.FWD,6,vex.DistanceUnits.IN)
-    pass
+    #position Preload\
+    #tray.spin(vex.DirectionType.FWD,45,vex.VelocityUnits.PCT) 
+    if autonValue == 1:
+        dt.drive_for(vex.DirectionType.FWD,70,0,100,vex.DistanceUnits.IN)
+        
+        #robot out-takes off 
+        rright_intake.spin(vex.DirectionType.FWD,-100,vex.VelocityUnits.PCT)
+        left_intake.spin(vex.DirectionType.FWD,-100,vex.VelocityUnits.PCT)
+        
+        #line up to wall
+        dt.drive_for(vex.DirectionType.FWD,-70,0,100,vex.DistanceUnits.IN)
+        
+        #turn on in-take 
+        rright_intake.spin(vex.DirectionType.FWD,100,vex.VelocityUnits.PCT)
+        left_intake.spin(vex.DirectionType.FWD,100,vex.VelocityUnits.PCT)
+        
+        #robot drive forward
+        dt.drive_for(vex.DirectionType.FWD,400,0,50,vex.DistanceUnits.IN)
+        
+        sys.sleep(0.5)
+        
+        
+        #Drive back to score
+        dt.drive_for(vex.DirectionType.FWD,-215,0,100,vex.DistanceUnits.IN)
+        
+        #turn to score
+        
+        
+        dt.turn_for(vex.TurnType.RIGHT,53,vex.RotationUnits.DEG)
+        dt.drive_for(vex.DirectionType.FWD,95,0,50,vex.DistanceUnits.IN)
+        
+        rright_intake.spin(vex.DirectionType.FWD,-50,vex.VelocityUnits.PCT)
+        left_intake.spin(vex.DirectionType.FWD,-50,vex.VelocityUnits.PCT)
+        
+        sys.sleep(0.65)
+        
+        rright_intake.spin(vex.DirectionType.FWD,0,vex.VelocityUnits.PCT)
+        left_intake.spin(vex.DirectionType.FWD,0,vex.VelocityUnits.PCT)
+        
+        sys.sleep(1.5)
+        
+        tray.spin(vex.DirectionType.FWD,35,vex.VelocityUnits.PCT)
+        
+        sys.sleep(2.5)
+        
+        rright_intake.spin(vex.DirectionType.FWD,-20,vex.VelocityUnits.PCT)
+        left_intake.spin(vex.DirectionType.FWD,-20,vex.VelocityUnits.PCT)
+        tray.spin(vex.DirectionType.FWD,-40,vex.VelocityUnits.PCT)
+        
+        sys.sleep(0.3)
+        
+        dt.drive_for(vex.DirectionType.FWD,-75,0,50,vex.DistanceUnits.IN)
+        
+    else:
+        dt.drive_for(vex.DirectionType.FWD,70,0,100,vex.DistanceUnits.IN)
+        
+        #robot out-takes off 
+        rright_intake.spin(vex.DirectionType.FWD,-100,vex.VelocityUnits.PCT)
+        left_intake.spin(vex.DirectionType.FWD,-100,vex.VelocityUnits.PCT)
+        
+        #line up to wall
+        dt.drive_for(vex.DirectionType.FWD,-70,0,100,vex.DistanceUnits.IN)
+        
+        #turn on in-take 
+        rright_intake.spin(vex.DirectionType.FWD,100,vex.VelocityUnits.PCT)
+        left_intake.spin(vex.DirectionType.FWD,100,vex.VelocityUnits.PCT)
+        
+        #robot drive forward
+        dt.drive_for(vex.DirectionType.FWD,370,0,50,vex.DistanceUnits.IN)
+        
+        
+        #Drive back to score
+        dt.drive_for(vex.DirectionType.FWD,-185,0,100,vex.DistanceUnits.IN)
+        
+        #turn to score
+        
+        
+        dt.turn_for(vex.TurnType.RIGHT,53,vex.RotationUnits.DEG)
+        dt.drive_for(vex.DirectionType.FWD,100,0,50,vex.DistanceUnits.IN)
+        
+        rright_intake.spin(vex.DirectionType.FWD,-50,vex.VelocityUnits.PCT)
+        left_intake.spin(vex.DirectionType.FWD,-50,vex.VelocityUnits.PCT)
+        
+        sys.sleep(0.65)
+        
+        rright_intake.spin(vex.DirectionType.FWD,0,vex.VelocityUnits.PCT)
+        left_intake.spin(vex.DirectionType.FWD,0,vex.VelocityUnits.PCT)
+        
+        sys.sleep(1.5)
+        
+        tray.spin(vex.DirectionType.FWD,35,vex.VelocityUnits.PCT)
+        
+        sys.sleep(2.5)
+        
+        rright_intake.spin(vex.DirectionType.FWD,-20,vex.VelocityUnits.PCT)
+        left_intake.spin(vex.DirectionType.FWD,-20,vex.VelocityUnits.PCT)
+        tray.spin(vex.DirectionType.FWD,-40,vex.VelocityUnits.PCT)
+        
+        sys.sleep(0.3)
+        
+        dt.drive_for(vex.DirectionType.FWD,-75,0,50,vex.DistanceUnits.IN)
 
 def drivercontrol():
     # Place drive control code here, inside the loop
