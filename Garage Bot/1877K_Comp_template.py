@@ -14,7 +14,13 @@ def forward(x,y,z):
         rfront.rotate_to(x,vex.RotationUnits.REV,y, vex.VelocityUnits.PCT,False)
         rback.rotate_to(x,vex.RotationUnits.REV,y, vex.VelocityUnits.PCT,False)
     
-
+def roll(rotation =0,speed=100,wait=0) #this fuctions makes the intake rull for a number of rotations
+    if wait ==1:
+        rroller.rotate_to(rotation,vex.RotationUnits.REV,speed,vex.VelocityUnits.PCT)
+        lroller.rotate_to(rotation,vex.RotationUnits.REV,speed,vex.VelocityUnits.PCT)
+    else:
+        rroller.rotate_to(rotation,vex.RotationUnits.REV,speed,vex.VelocityUnits.PCT,False)
+        lroller.rotate_to(rotation,vex.RotationUnits.REV,speed,vex.VelocityUnits.PCT,False)
 #region config
 brain      = vex.Brain()
 lroller    = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO18_1, False)
@@ -50,10 +56,9 @@ def autonomous():
    # rroller.rotate_for_time(vex.DirectionType.REV,3,vex.TimeUnits.SEC,100,vex.VelocityUnits.PCT,False)# not runing until the last commad finish.
     #lroller.rotate_for_time(vex.DirectionType.REV,3,vex.TimeUnits.SEC,100,vex.VelocityUnits.PCT)#same as the last one
     #roll(-10,100)
-    rroller.rotate_to(-5,vex.RotationUnits.REV,25,vex.VelocityUnits.PCT,False)
-    lroller.rotate_to(-5,vex.RotationUnits.REV,25,vex.VelocityUnits.PCT,False)
-    rollerlift.rotate_to(0.9,vex.RotationUnits.REV,100,vex.VelocityUnits.PCT)
-    rollerlift.rotate_to(-0.0,vex.RotationUnits.REV,100,vex.VelocityUnits.PCT)
+    roll(-5,100)
+    rollerlift.rotate_to(0.9,vex.RotationUnits.REV,25,vex.VelocityUnits.PCT)
+    rollerlift.rotate_to(-0.0,vex.RotationUnits.REV,25,vex.VelocityUnits.PCT)
 
 def drivercontrol():
     # Place drive control code here, inside the loop
