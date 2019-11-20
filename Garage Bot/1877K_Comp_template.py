@@ -32,43 +32,28 @@ con        = vex.Controller(vex.ControllerType.PRIMARY)
 # Creates a competition object that allows access to Competition methods.
 competition = vex.Competition()
 
-def pre_auton():
+def autonomous():
+  def pre_auton():
     # All activities that occur before competition start
     # Example: setting initial positions
+    rroller.set_timeout(1,vex.TimeUnits.SEC)
+    mag.set_timeout(1,vex.TimeUnits.SEC)
     pass
 
 def autonomous():
-    #Blue   
-    move(3,100,100,0)
-    #Forward (# 1) Not waiting for completion to deploy
-    mag.rotate_to(360, vex.RotationUnits.DEG, 75, vex.VelocityUnits.PCT, True)
-    rollerlift.rotate_to(150, vex.RotationUnits.DEG, 50, vex.VelocityUnits.PCT,True)
-    rollerlift.stop(vex.BrakeType.HOLD)
-    #deploy waiting for completion after each step
-    if lfront.is_spinning()!= True:
-        #checking for completion of forward command to continue moving
-        move(5,100,-100,1)
-        #Right
-        move(.5,-100,-100)
-        #Back
-        #Forward
-        #Intake and forward
-        #Back
-        #Left
-        #Forward
-        #Score
-        #Red
-        #Forward
-        #Left
-        #Back
-        #Forward
-        #Intake and forward
-        #Back
-        #Right
-        #Forward
-        #Score
- # Place autonomous code here
-
+    #Blue  
+    mag.rotate_to(1.4, vex.RotationUnits.REV, 100, vex.VelocityUnits.PCT)
+    rollerlift.rotate_to(0.7, vex.RotationUnits.REV, 70, vex.VelocityUnits.PCT)#this need to finish before next command
+    rollerlift.rotate_to(-0.0, vex.RotationUnits.REV, 70, vex.VelocityUnits.PCT)
+    #mag.rotate_to(0.5,vex.RotationUnits.REV,100,vex.VelocityUnits.PCT)
+   # mag.rotate_to(-1.4, vex.RotationUnits.REV, 100, vex.VelocityUnits.PCT)
+   # rroller.rotate_for_time(vex.DirectionType.REV,3,vex.TimeUnits.SEC,100,vex.VelocityUnits.PCT,False)# not runing until the last commad finish.
+    #lroller.rotate_for_time(vex.DirectionType.REV,3,vex.TimeUnits.SEC,100,vex.VelocityUnits.PCT)#same as the last one
+    #roll(-10,100)
+    rroller.rotate_to(-5,vex.RotationUnits.REV,25,vex.VelocityUnits.PCT,False)
+    lroller.rotate_to(-5,vex.RotationUnits.REV,25,vex.VelocityUnits.PCT,False)
+    rollerlift.rotate_to(0.9,vex.RotationUnits.REV,100,vex.VelocityUnits.PCT)
+    rollerlift.rotate_to(-0.0,vex.RotationUnits.REV,100,vex.VelocityUnits.PCT)
 
 def drivercontrol():
     # Place drive control code here, inside the loop
