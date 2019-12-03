@@ -102,7 +102,42 @@ pre_auton()
 
 # Robot Mesh Studio runtime continues to run until all threads and
 # competition callbacks are finished.
-
+def turnLeftDeg(degrees,power,ticks):
+#   //Reset encoders
+  ltempen = lfront.rotation(vex.RotationUnits.DEG)
+  ltempenb =lback.rotation(vex.RotationUnits.DEG)
+  rtempen = rfront.rotation(vex.RotationUnits.DEG)
+  rtempenb =rback.rotation(vex.RotationUnits.DEG)
+  lfront.reset_rotation()
+  lback.reset_rotation()
+  rfront.reset_rotation()
+  rback.reset_rotation()
+#   //Determine tickGoal
+  tickGoal = ticks
+#   //Start the motors in a left point turn.
+  lfront.spin(vex.DirectionType.FWD,-1 * power,vex.VelocityUnits.PCT)
+  lback.spin(vex.DirectionType.FWD,-1 * power,vex.VelocityUnits.PCT)
+  rfront.spin(vex.DirectionType.FWD,power,vex.VelocityUnits.PCT)
+  rback.spin(vex.DirectionType.FWD, power,vex.VelocityUnits.PCT)
+#   //Since the wheels may go at slightly different speeds due to manufacturing tolerances, etc., 
+#   //we need to test both encoders and control both motors separately. This may result in one motor
+#   //going for longer than another but it will ultimately result in a much more accurate turn.
+  while rfront.rotation(vex.RotationUnits.DEG) < tickGoal or lfront.rotation(vex.RotationUnits.DEG) > -1* tickGoal:
+     if(rfront.rotation(vex.RotationUnits.DEG) > tickGoal): 
+        rfront.stop(vex.BrakeType.BRAKE)
+        rback.stop(vex.BrakeType.BRAKE)
+     if(lfront.rotation(vex.RotationUnits.DEG) > tickGoal):
+        lfront.stop(vex.BrakeType.BRAKE)
+        lback.stop(vex.BrakeType.BRAKE)
+#   //Make sure both motors stop at the end of the turn.
+  rfront.stop(vex.BrakeType.BRAKE)
+  rback.stop(vex.BrakeType.BRAKE)
+  lfront.stop(vex.BrakeType.BRAKE)
+  lback.stop(vex.BrakeType.BRAKE)
+  lfront.set_rotation(ltempen,vex.RotationUnits.DEG)
+  lback.set_rotation(ltempenb,vex.RotationUnits.DEG)
+  rfront.set_rotation(rtempen,vex.RotationUnits.DEG)
+  rback.set_rotation(rtempenb,vex.RotationUnits.DEG)
 
 
   
