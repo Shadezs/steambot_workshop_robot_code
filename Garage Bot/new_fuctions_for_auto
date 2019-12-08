@@ -1,0 +1,36 @@
+def move(rotations,velocityPercentageleft,velocityPercentageright,waitForCompletion=1):
+    if waitForCompletion==1:
+        lf.rotate_to(rotations,vex.RotationUnits.REV,velocityPercentageleft,vex.VelocityUnits.PCT,False)
+        lb.rotate_to(rotations,vex.RotationUnits.REV,velocityPercentageleft,vex.VelocityUnits.PCT,False)
+        rf.rotate_to(rotations,vex.RotationUnits.REV,velocityPercentageright,vex.VelocityUnits.PCT,False)
+        rb.rotate_to(rotations,vex.RotationUnits.REV,velocityPercentageright,vex.VelocityUnits.PCT,True)
+    else:
+        lf.rotate_to(rotations,vex.RotationUnits.REV,velocityPercentageleft,vex.VelocityUnits.PCT,False)
+        lb.rotate_to(rotations,vex.RotationUnits.REV,velocityPercentageleft,vex.VelocityUnits.PCT,False)
+        rf.rotate_to(rotations,vex.RotationUnits.REV,velocityPercentageright,vex.VelocityUnits.PCT,False)
+        rb.rotate_to(rotations,vex.RotationUnits.REV,velocityPercentageright,vex.VelocityUnits.PCT,False)
+def moveTime(velocityPercentageleft,velocityPercentageright,time)
+    lf.spin(vex.DirectionType.FWD,velocityPercentageleft)
+    lb.spin(vex.DirectionType.FWD,velocityPercentageleft)
+    rf.spin(vex.DirectionType.FWD,velocityPercentageright)
+    rb.spin(vex.DirectionType.FWD,velocityPercentageright)
+def tray(rotations,velocityPercentage,waitForCompletion=1)
+    if waitForCompletion==1:
+        tray.rotate_to(rotations,velocityPercentage)
+    else:
+        tray.rotate_to(rotations,velocityPercentage,False)
+# VEX V5 Python Project
+import vex
+from vex import *
+
+#region config
+brain = vex.Brain()
+lf    = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO18_1, False)
+lb    = vex.Motor(vex.Ports.PORT2, vex.GearSetting.RATIO18_1, False)
+rf    = vex.Motor(vex.Ports.PORT3, vex.GearSetting.RATIO18_1, True)
+rb    = vex.Motor(vex.Ports.PORT4, vex.GearSetting.RATIO18_1, True)
+tray  = vex.Motor(vex.Ports.PORT5, vex.GearSetting.RATIO18_1, True)
+rroll = vex.Motor(vex.Ports.PORT6, vex.GearSetting.RATIO18_1, True)
+lroll = vex.Motor(vex.Ports.PORT7, vex.GearSetting.RATIO18_1, False)
+lift  = vex.Motor(vex.Ports.PORT8, vex.GearSetting.RATIO18_1, False)
+#endregion config
